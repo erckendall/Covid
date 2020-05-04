@@ -122,55 +122,39 @@ for t in range(n_tsteps):
 
 
 ### define f_s_b update (eq 11 to update s and beta) Need to maximise
-@numba.jit(parallel=True, nopython=True, nogil=True)
+@numba.jit(parallel=True)
 def f_s_b(sbeta):
     beta = sbeta[-1]
-    s = []
-    for i in range(lim):
-        s.append(sbeta[i])
+    s = sbeta[0:lim]
     ar = np.ones((lim, lim))
     np.fill_diagonal(ar, 0)
-    fst = 0
-    for i in range(n_tsteps):
-        fst += np.sum(np.transpose(np.transpose(X_trunc[i]) * np.log(np.array(s))))
-    tolog = []
-    tomult = []
-    for i in range(lim):
-        tolog.append(np.sum(s[i]*(np.transpose(np.exp(-beta * dist) * ar))[i]))
-        val = 0
-        for t in range(n_tsteps):
-            val += Y_trunc[t][i]
-        tomult.append(val)
-    thd = 0
-    for i in range(n_tsteps):
-        thd += -beta * np.sum((dist*X_trunc[i]))
-    snd = -np.sum(np.array(tomult) * np.log(np.array(tolog)))
-    return -(fst+snd+thd)   #, fst, snd, thd ### negative here as we want to maximise the positive value (minimise negative)
+    fst = np.sum(X_trunc * np.log(np.array(s))[np.newaxis, :, np.newaxis])
+    snd = -np.sum(np.sum(Y_trunc, axis=0) * np.log(np.sum(np.array(s)[np.newaxis, :] * np.exp(-beta * dist) * ar, axis=1)))
+    thd = -beta * np.sum(dist[np.newaxis, :] * X_trunc)
+    return -(fst+snd+thd)#, fst, snd, thd ### negative here as we want to maximise the positive value (minimise negative)
 
 
 ### Define approximate log likelihood function
-@numba.jit(parallel=True)
+@numba.jit(parallel=True, nopython=True, nogil=True)
 def loglik(comb):
+    Y_trun = Y_trunc.copy()
+    Z_trun = Z_trunc.copy()
+    X_trun = X_trunc.copy()
+
     for t in range(n_tsteps):
-        for i in range(len(names)):
-            Y_trunc[t][i] = comb[Y_plus + t * dy[1] + i]
-            Z_trunc[t][i] = comb[Z_plus + t * dz[1] + i]
-            for j in range(len(names)):
-                X_trunc[t][i][j] = comb[t * dx[2] * dx[1] + i * dx[2] + j]
-    np.array(Y_trunc)
-    np.array(Z_trunc)
-    np.array(X_trunc)
-    pi_in = np.ones((lim))
-    for i in range(len(names)):
-        pi_in[i] = 1 - pi[i]
-    fst = np.sum(Y_trunc * np.log(N_trunc * np.array(pi)[np.newaxis, :]) + Y_trunc - Y_trunc * np.log(Y_trunc))
-    snd = np.sum(Z_trunc * np.log(N_trunc * pi_in[np.newaxis, :]) + Z_trunc - Z_trunc * np.log(Z_trunc))
-    thd = np.sum(X_trunc * np.log(np.array(mu)[np.newaxis, :]) + X_trunc - X_trunc * np.log(X_trunc))
-    first = abs(np.sum((N_trunc - Y_trunc - Z_trunc), axis=1))**2
-    second = abs(np.sum((N_trunc_p1 - Z_trunc -np.sum(X_trunc, axis=2)), axis=1))**2
+        for i in range(lim):
+            Y_trun[t][i] = comb[Y_plus + t * dy[1] + i]
+            Z_trun[t][i] = comb[Z_plus + t * dz[1] + i]
+            for j in range(lim):
+                X_trun[t][i][j] = comb[t * dx[2] * dx[1] + i * dx[2] + j]
+
+    fst = np.sum(Y_trun * log_N_pi + Y_trun - Y_trun * np.log(Y_trun))
+    snd = np.sum(Z_trun * log_N_pi_in + Z_trun - Z_trun * np.log(Z_trun))
+    thd = np.sum(X_trun * log_mu_ext_ones / ones + X_trun - X_trun * np.log(X_trun))
+    first = np.abs(np.sum((N_trunc - Y_trun - Z_trun), axis=1))**2
+    second = np.abs(np.sum((N_trunc_p1 - Z_trun -np.sum(X_trun, axis=2)), axis=1))**2
     tot = np.sum(first + second)
     return -(fst + snd + thd - (lmbda/2) * tot)
-
 
 
 
@@ -216,6 +200,18 @@ while conv == False:
             for t in range(n_tsteps):
                 sum += N[t][j]
             mu[i, j] = sum * theta[j][i] ### Weird - what is t here
+    pi_in = np.ones(lim)
+    for i in range(len(names)):
+        pi_in[i] = 1 - pi[i]
+
+    pi_ext = np.array(pi)[np.newaxis, :]
+    pi_in_ext = pi_in[np.newaxis, :]
+    mu_ext = np.array(mu)[np.newaxis, :]
+    ones = np.ones(X_trunc.shape)
+    log_mu_ext_ones = np.log(mu_ext) * ones
+    log_N_pi = np.log(N_trunc * pi_ext)
+    log_N_pi_in = np.log(N_trunc * pi_in_ext)
+
 
     ### flattening and concatenating X, Y, Z to feed into optimisation
     dx = np.array(X).shape
@@ -320,50 +316,51 @@ for i in range(len(names)):
     pi_f.append((num / denom))
 pi_f = np.array(pi_f)
 
+ones = np.ones((n_tsteps, lim, lim))
 
+pi_in_log = np.zeros((lim))
+for h in range(len(names)):
+    pi_in_log[h] = np.log(1 - pi_f[h])
+pi_in_log = pi_in_log[np.newaxis, np.newaxis, :] * ones
 
+diag = np.zeros((lim, lim))
+np.fill_diagonal(diag, 1)
+diag = diag[np.newaxis, :, :] * ones
 
-# print '----------------------- \n'
-# print 'Final XYZ[0]: ', X[0][0][0]
-# print 'Final s: ', s
-# print 'Final beta: ', beta
-# print 'Final pi: ', pi_f
-# print 'Current: ', current
-# print 'Current_2: ', current_2
+o_diag = np.ones((lim, lim))
+np.fill_diagonal(o_diag, 0)
 
+o_diag_ext = o_diag[np.newaxis, :, :] * ones
+
+mult = np.log(pi_f[:, np.newaxis]) + np.log(np.array(s)[:, np.newaxis]) - beta * dist
+mult = mult[np.newaxis, :, :] * ones
+
+mult2 = - np.log(np.sum(np.array(s)[np.newaxis, :] * np.exp(-beta * dist) * o_diag, axis=1))
+mult2 = mult2[np.newaxis, :, np.newaxis] * ones
+
+M_trun = np.zeros((n_tsteps, lim, lim))
+M_trun_t = np.zeros((n_tsteps, lim, lim))
 
 ### Exact log likelihood (eqn 4) ### Need to figure out how K_cut can help here - currently just imposed in initial values, not strict rule
 ### Probably needs to go into the bounds in the optimisation
 ### Also needs to go into the XYZ bounds - check defs
 
-@numba.jit(parallel=True)
+@numba.jit(parallel=True, nopython=True, nogil=True)
 def loglik_ex(Marr):
-    M_trunc = np.zeros((n_tsteps, lim, lim))
-    M_trunc_t = np.zeros((n_tsteps, lim, lim))
+    M_trunc = M_trun.copy()
+    M_trunc_t = M_trun_t.copy()
     for t in range(n_tsteps):
-        for i in range(len(names)):
-            for j in range(len(names)):
+        for i in range(lim):
+            for j in range(lim):
                 M_trunc[t][i][j] = (Marr[t * dM[2] * dM[1] + i * dM[2] + j])
                 M_trunc_t[t][j][i] = (Marr[t * dM[2] * dM[1] + i * dM[2] + j])
-    np.array(M_trunc)
-    np.array(M_trunc_t)
 
-    pi_in_log = np.zeros((lim))
-    for h in range(len(names)):
-        pi_in_log[h] = np.log(1 - pi_f[h])
-    o_diag = np.ones((lim,lim))
-    diag = np.zeros((lim, lim))
-    np.fill_diagonal(o_diag, 0)
-    np.fill_diagonal(diag, 1)
+    fst = np.sum(np.square(np.sum(N_trunc - np.sum(M_trunc, axis=2), axis=1)))
+    snd = np.sum(np.square(np.sum(N_trunc_p1 - np.sum(M_trunc_t, axis=2), axis=1)))
 
-    fst = np.sum(abs(np.sum(N_trunc - np.sum(M_trunc, axis=2), axis=1))**2)
-    snd = np.sum(abs(np.sum(N_trunc_p1 - np.sum(M_trunc_t, axis=2), axis=1))**2)
-
-    first = pi_in_log[np.newaxis, np.newaxis, :] * M_trunc * diag[np.newaxis, :, :]
-    mult = np.log(pi_f[:, np.newaxis]) + np.log(np.array(s)[:, np.newaxis]) - beta * dist
-    mult2 = - np.log(np.sum(np.array(s)[np.newaxis, :] * np.exp(-beta * dist) * o_diag, axis=1))
-    second = M_trunc * o_diag[np.newaxis, :, :] * mult[np.newaxis, :, :] + M_trunc * o_diag[np.newaxis, :, :] * mult2[np.newaxis, :, np.newaxis]
-    third = (M_trunc - M_trunc * np.log(M_trunc))*o_diag[np.newaxis, :, :]
+    first = (pi_in_log / ones) * M_trunc * (diag / ones)
+    second = M_trunc * (o_diag_ext / ones) * (mult / ones) + M_trunc * (o_diag_ext / ones) * (mult2 / ones)
+    third = (M_trunc - M_trunc * np.log(M_trunc)) * (o_diag_ext / ones)
     return -(np.sum(first + second + third) - (lmbda/2.) * (fst + snd))
 
 ### Performing final optimisation
@@ -382,7 +379,6 @@ for a in ind_lst:
 opt = {'maxiter': 1000, 'ftol': 2.3} ### Note that implementing this seems to severely change M output
 Mvals = scipy.optimize.minimize(fun=loglik_ex, x0=Marr, method="SLSQP", bounds=bnds, constraints=cons, options=opt, tol=2.3)
 Mfinal = Mvals.x
-print 'Loglik: ', Mvals.fun
 try:
     assert Mvals.success
 except AssertionError as err:
@@ -405,7 +401,7 @@ print 'Number of timesteps = ', n_tsteps
 print 'beta = ', beta
 print 's = ', s
 print 'M(t=0) = \n', M[0]
-print 'Run time = ', ((stop - start)/60), 'mins'
+print 'Run time = ', np.round(((stop - start)/60),2), 'mins'
 
 ###################### END
 
