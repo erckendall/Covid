@@ -1,0 +1,24 @@
+<OGRVRTDataSource>
+  <OGRVRTLayer name="statistical-area-2-2018-centroid-true">
+    <SrcDataSource relativeToVRT="1">statistical-area-2-2018-centroid-true.csv</SrcDataSource>
+    <FeatureCount>2237</FeatureCount>
+    <GeometryField field="WKT" reportSrcColumn="FALSE">
+      <GeometryType>wkbPoint</GeometryType>
+      <SRS>EPSG:2193</SRS>
+      <ExtentXMin>1122110.3968</ExtentXMin>
+      <ExtentYMin>4783640.579</ExtentYMin>
+      <ExtentXMax>2449381.7102</ExtentXMax>
+      <ExtentYMax>6219778.0087</ExtentYMax>
+    </GeometryField>
+    <Field name="SA22018_V1_00" src="SA22018_V1_00" type="String" width="10" />
+    <Field name="SA22018_V1_NAME" src="SA22018_V1_NAME" type="String" width="254" />
+    <Field name="LAND_AREA_SQ_KM" src="LAND_AREA_SQ_KM" type="Real" />
+    <Field name="AREA_SQ_KM" src="AREA_SQ_KM" type="Real" />
+    <Field name="EASTING" src="EASTING" type="Real" />
+    <Field name="NORTHING" src="NORTHING" type="Real" />
+    <Field name="LATITUDE" src="LATITUDE" type="Real" />
+    <Field name="LONGITUDE" src="LONGITUDE" type="Real" />
+    <Field name="Shape_X" src="Shape_X" type="Real" />
+    <Field name="Shape_Y" src="Shape_Y" type="Real" />
+  </OGRVRTLayer>
+</OGRVRTDataSource>

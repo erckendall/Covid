@@ -1,0 +1,8 @@
+n_regions = 63
+lambda = 1.0
+n_steps = 3
+nv_factr = 10000000000.0
+nv_pgtol = 5.0
+Mv_factr = 100000.0
+Mv_pgtol = 5.0
+Runtime (mins) = 17.51
