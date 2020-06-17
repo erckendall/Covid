@@ -9,21 +9,23 @@ np.set_printoptions(threshold=sys.maxsize)
 np.set_printoptions(formatter={'all': lambda x: str(int(x))})
 
 # Import Nathan's fake data
-N = np.load('Nathan Fake 16/N.npy')
-M_est = np.load('Nathan Fake 16/M_est.npy')
-M_true = np.load('Nathan Fake 16/M_true.npy')
-dist = np.load('Nathan Fake 16/d.npy')
-K_val = np.load('Nathan Fake 16/K.npy')
+N = np.load('Nathan Fake 64/N.npy')
+M_est = np.load('Nathan Fake 64/M_est.npy')
+M_true = np.load('Nathan Fake 64/M_true.npy')
+dist = np.load('Nathan Fake 64/d.npy')
+K_val = np.load('Nathan Fake 64/K.npy')
 
 ### Want to include filter s.t. regions more than 80km cannot be accessed in one timestep
 K_cut = np.where(dist > K_val, 0, 1)
 
 # Specify number of time steps (# of slices - 1), and number of regions
 n_tsteps = 3
-lim = 16
+lim = 64
+tol = 1e-4
+conv_per = 0.00001
 
 # Specify value of Lambda coefficient of penalty terms and initial beta and s guesses
-lmbda = 2.
+lmbda = 10.
 beta = np.zeros(1)
 s = np.ones(lim)
 sbeta = np.concatenate((s, beta))
@@ -32,11 +34,20 @@ sbeta = np.concatenate((s, beta))
 N_t = N[0:n_tsteps]
 N_tp1 = N_trunc_p1 = N[1:(n_tsteps + 1)]
 
+#Compute the average change in N over time for each slice (instead of specifying factor - some kind of average )
+fac_list = []
+for t in range(n_tsteps):
+    avg = 0
+    for i in range(lim):
+        avg += np.abs(N_t[t][i] - N_tp1[t][i])
+    avg = avg/(lim ** 2) # or lim **2? also, maybe need more movement in test data. Like gathering scores higher or smth
+    fac_list.append(avg)
+
 # Initialise M, XYZ matrices, assuming N on diagonal and random values [0, 10] on off-diagonal
 M, X = (np.zeros((n_tsteps, lim, lim)) for a in range(2))
 Y, Z = (np.zeros((n_tsteps, lim)) for b in range(2))
 for t in range(n_tsteps):
-    M[t] = np.random.rand(lim, lim) * K_cut * 10
+    M[t] = np.random.rand(lim, lim) * K_cut * fac_list[t]
     for i in range(lim):
         M[t][i][i] = N_t[t][i]
         for j in range(lim):
@@ -176,7 +187,7 @@ while conv == False:
     except AssertionError as err:
         print("XYZ error ", newvals[2]['task'])
         print(err)
-    print 'Current approximate log likelihood = ', current
+    print 'Current approximate log likelihood = ', - current
     for i in XYZ:
         if i < 0:
             print "XYZ bounds exceeded"
@@ -202,8 +213,8 @@ while conv == False:
         # print "FORCING EXIT"
         # exit()
 
-    if abs((existing - current)/current)*100 < .01 and abs((existing_2 - current_2)/current_2)*100 < .01:
-        print "Converged to within 0.01%"
+    if abs((existing - current)/current)*100 < conv_per and abs((existing_2 - current_2)/current_2)*100 < conv_per:
+        print "Converged to within chosen limit"
         conv = True
 
 # End while and stop timer
@@ -280,7 +291,7 @@ for i in range(M.shape[0]):
         bnds.append((.1, .4))
     else:
         bnds.append((.1, 1e4))
-Mvals = scipy.optimize.minimize(fun=final_log_lik, x0=M, method='L-BFGS-B', jac=final_jac, args=(pi, sbeta, exp_sum, pi_inv), bounds=bnds, options={'ftol': 1e-2})
+Mvals = scipy.optimize.minimize(fun=final_log_lik, x0=M, method='L-BFGS-B', jac=final_jac, args=(pi, sbeta, exp_sum, pi_inv), bounds=bnds, options={'ftol': tol, 'eps': 1e-10})
 Mfinal = Mvals.x
 print '---------------------------'
 try:
@@ -288,7 +299,7 @@ try:
 except AssertionError as err:
     print("Mvals error ", Mvals.message)
     print(err)
-print 'Final Log Likelihood value: ', Mvals.fun
+print 'Final Log Likelihood value: ', - Mvals.fun
 stop = timeit.default_timer()
 
 ## Returning M matrices to original form
@@ -311,14 +322,31 @@ for i in range(n_tsteps):
 NAE_Emily = num/denom
 NAE_Nathan = num_Nathan/denom
 
+
+num = 0
+num_Nathan = 0
+denom = 0
+for i in range(n_tsteps):
+    for j in range(lim):
+        for k in range(lim):
+            if k != j:
+                num += np.abs(M_true[i][j][k] - M_mat[i][j][k])
+                num_Nathan += np.abs(M_true[i][j][k] - M_est[i][j][k])
+                denom += M_true[i][j][k]
+off_NAE_Emily = num/denom
+off_NAE_Nathan = num_Nathan/denom
+
 # Print output
 print 'Run time loop = ', np.round(((stop1 - start)/60),2), 'mins'
 print 'Run time final optimisation = ', np.round(((stop - stop1)/60), 2), 'mins'
 print "NAE Emily = ", NAE_Emily
 print "NAE Nathan = ", NAE_Nathan
+print "off diagonal NAE Emily = ", off_NAE_Emily
+print "off diagonal NAE Nathan = ", off_NAE_Nathan
 print 'Number of regions = ', lim
 print 'Number of timesteps = ', n_tsteps
 print 'beta = ', sbeta[-1]
+print 'ftol, Lambda = ', [tol, lmbda]
 # print 's = ', sbeta[0: lim]
 # print 'M_Emily(t=0) = \n', M_mat[0]
 # print 'M_true(t=0) = \n', M_true[0]

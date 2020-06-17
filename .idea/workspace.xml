@@ -2,27 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40d08a64-7c13-41fd-9eb8-2d9666ff00b3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/K.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/M_00000.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/M_00001.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/M_00002.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/N.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/beta_00000.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/beta_00001.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/beta_00002.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/d.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/gamma.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/lambda.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/pi_00000.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/pi_00001.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/pi_00002.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/s_00000.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/s_00001.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Nathan Fake Data/zip/s_00002.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_Fake.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test_Fake_Jacobian.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fake_data.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/parallel_version_fourth.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Approx_Inf_Nathan_Data.py" beforeDir="false" afterPath="$PROJECT_DIR$/Approx_Inf_Nathan_Data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nathan Fake 225/K.npy" beforeDir="false" afterPath="$PROJECT_DIR$/Nathan Fake 225/K.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nathan Fake 225/M_est.npy" beforeDir="false" afterPath="$PROJECT_DIR$/Nathan Fake 225/M_est.npy" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,11 +26,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Approx_Inf_Nathan_Data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4380">
-              <caret line="292" lean-forward="true" selection-start-line="292" selection-end-line="292" />
+            <state relative-caret-position="273">
+              <caret line="310" lean-forward="true" selection-start-line="310" selection-end-line="310" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Approx_Inf_Re_Loop.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -137,6 +132,7 @@
         <option value="$PROJECT_DIR$/Nathan-fake.py" />
         <option value="$PROJECT_DIR$/testing.py" />
         <option value="$PROJECT_DIR$/Approx_Inf_Nathan_Data.py" />
+        <option value="$PROJECT_DIR$/Approx_Inf_Re_Loop.py" />
       </list>
     </option>
   </component>
@@ -179,8 +175,30 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Approx_Inf_Nathan_Data">
+  <component name="RunManager" selected="Python.Approx_Inf_Re_Loop">
     <configuration name="Approx_Inf_Nathan_Data" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Covid-19" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="NUMBA_NUM_THREADS" value="12" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Approx_Inf_Nathan_Data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Approx_Inf_Re_Loop" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Covid-19" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -192,7 +210,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Approx_Inf_Nathan_Data.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Approx_Inf_Re_Loop.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -214,27 +232,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Nathan-fake.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Test_Fake" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Covid-19" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test_Fake.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -286,19 +283,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Test_Fake" />
       <item itemvalue="Python.Test_Fake_Jacobian" />
       <item itemvalue="Python.testing" />
       <item itemvalue="Python.Nathan-fake" />
       <item itemvalue="Python.Approx_Inf_Nathan_Data" />
+      <item itemvalue="Python.Approx_Inf_Re_Loop" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Approx_Inf_Re_Loop" />
         <item itemvalue="Python.Approx_Inf_Nathan_Data" />
         <item itemvalue="Python.Nathan-fake" />
         <item itemvalue="Python.testing" />
         <item itemvalue="Python.Test_Fake_Jacobian" />
-        <item itemvalue="Python.Test_Fake" />
       </list>
     </recent_temporary>
   </component>
@@ -317,7 +314,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -497,8 +493,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Approx_Inf_Nathan_Data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4380">
-          <caret line="292" lean-forward="true" selection-start-line="292" selection-end-line="292" />
+        <state relative-caret-position="273">
+          <caret line="310" lean-forward="true" selection-start-line="310" selection-end-line="310" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Approx_Inf_Re_Loop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
