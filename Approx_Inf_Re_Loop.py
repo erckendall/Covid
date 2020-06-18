@@ -55,7 +55,6 @@ def pi_func(XYZ):
         pi[i] = num / denom
     return pi
 
-
 # Define theta as function of pi, beta, s, dist
 def theta_func(pi, sbeta, dist):
     s = sbeta[0:lim]
@@ -68,12 +67,10 @@ def theta_func(pi, sbeta, dist):
                               ((np.sum(s[np.newaxis, :] * np.exp(-sbeta[-1] * dist), axis=1))[i] - s[i])
     return theta
 
-
 # Define mu as a function of theta
 def mu_func(theta):
     mu = np.sum(N_t[:, np.newaxis] * theta[np.newaxis, :], axis=0)
     return mu
-
 
 # Define Jacobian for approximate log likelihood (minus at output for maximisation)
 @numba.jit(parallel=True, nopython=True, nogil=True, cache=True)
@@ -95,7 +92,6 @@ def app_jac(XYZ, log_mu, log_Npi, log_Npi_inv):
                                  lmbda * (N_tp1[t][i] - X_dev_sm[t][i])
     return - np.concatenate((X_dev.flatten(), Y_dev.flatten(), Z_dev.flatten()))
 
-
 # Define approximate inference log likelihood as a function of XYZ and other args (minus at output for maximisation)
 @numba.jit(parallel=True, nopython=True, nogil=True, cache=True)
 def app_log_lik(XYZ, log_mu, log_Npi, log_Npi_inv):
@@ -114,7 +110,6 @@ def app_log_lik(XYZ, log_mu, log_Npi, log_Npi_inv):
         Z * log_Npi_inv + Z - Z * np.log(Z))
     con = np.sum(np.abs(N_t - (Y + Z)) ** 2 + np.abs(N_tp1 - X_sm) ** 2)
     return -(sm - (lmbda / 2.) * con)
-
 
 # Define function of s and beta with args XYZ. Note: No Jacobian this time - approx grad used instead. (minus at output for maximisation)
 @numba.jit(parallel=True)
@@ -160,7 +155,6 @@ def final_log_lik(M, pi, sbeta, exp_sum, pi_inv):
          lmbda/2. * np.sum(np.abs(N_t - M_full_ti)**2 + np.abs(N_tp1 - M_trans_ti)**2)
     return -sm
 
-
 # Define Jacobian for final log likelihood including penalty term (minus at output for maximisation)
 @numba.jit(parallel=True, nopython=True, nogil=True, cache=True)
 def final_jac(M, pi, sbeta, exp_sum, pi_inv):
@@ -194,10 +188,11 @@ for t in range(n_tsteps):
 
 rnd = 0
 NAE_lim = False
-#Start External Loop
+# Start External Loop and start timer
+start = timeit.default_timer()
 while NAE_lim == False:
 
-    # Initialise M, XYZ matrices, assuming N on diagonal and random values [0, 10] on off-diagonal
+    # Initialise XYZ matrices using current M array
     X = np.zeros((n_tsteps, lim, lim))
     Y, Z = (np.zeros((n_tsteps, lim)) for b in range(2))
     for t in range(n_tsteps):
@@ -209,20 +204,18 @@ while NAE_lim == False:
                 if j == i:
                     Z[t][i] = M[t][i][j]
     XYZ = np.concatenate((X.flatten(), Y.flatten(), Z.flatten()))
-    M = M.flatten()                                                 ###NOTE M ONLY FLATTENED HERE
+    M = M.flatten()
 
     # Define as global variables shifts to locations of X, Y and Z elements within XYZ
     dx = X.shape
     dy = dz = Y.shape
     Y_shift, Z_shift = n_tsteps * lim ** 2, n_tsteps * lim * (1 + lim)
 
-
     current = 0.
     current_2 = 0.
     conv = False
 
-    # Begin while here and start timer:
-    start = timeit.default_timer()
+    # Begin inner while here:
     while conv == False:
         existing = current
         existing_2 = current_2
@@ -280,15 +273,9 @@ while NAE_lim == False:
         except AssertionError as err:
             print("beta error ", newvals2[2]['task'])
             print(err)
-            # print "FORCING EXIT"
-            # exit()
-
         if abs((existing - current)/current)*100 < conv_per and abs((existing_2 - current_2)/current_2)*100 < conv_per:
-            print "Converged to within chosen limit"
+            print "Converged to within ", conv_per, "%"
             conv = True
-
-    # End while and stop timer
-    stop1 = timeit.default_timer()
 
     ### pi update (eqn 10)
     pi = pi_func(XYZ)
@@ -299,7 +286,7 @@ while NAE_lim == False:
     for i in range(lim):
         pi_inv[i] = 1 - pi[i]
 
-
+    # Implement K cutoff for disallowed distances
     K_arr = np.zeros((n_tsteps, lim, lim))
     for t in range(n_tsteps):
         K_arr[t] = K_cut
@@ -321,7 +308,6 @@ while NAE_lim == False:
         print("Mvals error ", Mvals.message)
         print(err)
     print 'Final Log Likelihood value: ', - Mvals.fun
-    stop = timeit.default_timer()
 
     ## Returning M matrices to original form
     M_mat = np.zeros((n_tsteps, lim, lim))
@@ -344,6 +330,7 @@ while NAE_lim == False:
     NAE_Nathan = num_Nathan/denom
     print 'Current NAE = ', NAE_Emily
 
+    # Calculate also the off-diagonal NAE
     num = 0
     num_Nathan = 0
     denom = 0
@@ -357,16 +344,18 @@ while NAE_lim == False:
     off_NAE_Emily = num/denom
     off_NAE_Nathan = num_Nathan/denom
 
+    # Update M to new value and specify new iteration number
     M = M_mat
     rnd += 1
 
+    # End while only if suitable NAE obtained
     if NAE_Emily < 0.1:
         NAE_lim = True
-
+        stop = timeit.default_timer()
 
 # Print output
-# print 'Run time loop = ', np.round(((stop1 - start)/60),2), 'mins'
-# print 'Run time final optimisation = ', np.round(((stop - stop1)/60), 2), 'mins'
+print '---------------------------'
+print 'Run time = ', np.round(((stop - start)/60),2), 'mins'
 print "NAE Emily = ", NAE_Emily
 print "NAE Nathan = ", NAE_Nathan
 print "off diagonal NAE Emily = ", off_NAE_Emily
