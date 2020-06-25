@@ -1,3 +1,4 @@
+from __future__ import print_function
 import numpy as np
 import sys
 import scipy.optimize
@@ -10,7 +11,7 @@ np.set_printoptions(formatter={'all': lambda x: str(int(x))})
 
 # Loading the Southland names, data, and distance matrix
 names = np.load('southland_names.npy').tolist()
-vals = np.load('southland_vals.npy').tolist()
+vals = np.load('southland_vals.npy', allow_pickle=True).tolist()
 dist = np.load('southland_distance_matrix.npy')
 
 # Specify number of time steps (# of slices - 1), and number of regions
@@ -281,17 +282,17 @@ while NAE_lim == False:
             bnds.append((1e-9, None))
         newN = scipy.optimize.fmin_l_bfgs_b(app_log_lik, XYZ, args=(log_mu, log_Npi, log_Npi_inv), fprime=app_jac, bounds=bnds)#, epsilon=nv_eps, factr=nv_factr, pgtol=nv_pgtol)
         XYZ, current = newN[0], newN[1]
-        print '---------------------------'
-        print 'Round ', rnd
+        print('---------------------------')
+        print('Round ', rnd)
         try:
             assert newN[2]['warnflag'] == 0
         except AssertionError as err:
             print("XYZ error ", newN[2]['task'])
             print(err)
-        print 'Current approximate log likelihood = ', - current
+        print('Current approximate log likelihood = ', - current)
         for i in XYZ:
             if i < 0:
-                print "XYZ bounds exceeded"
+                print("XYZ bounds exceeded")
 
         ### Maximising f_s_b
         bnds = []
@@ -301,18 +302,18 @@ while NAE_lim == False:
 
         newN2 = scipy.optimize.fmin_l_bfgs_b(f_s_b, sbeta, args=(XYZ,), approx_grad=True, bounds=bnds)#, epsilon=beta_eps, factr=beta_factr, pgtol=beta_pgtol)
         sbeta, current_2 = newN2[0], newN2[1]
-        print 'Current f_s_b function value: ', current_2
-        print 'beta = ', sbeta[-1]
+        print('Current f_s_b function value: ', current_2)
+        print('beta = ', sbeta[-1])
         for sval in sbeta[0: lim]:
             if sval < 0:
-                print "s bounds exceeded"
+                print("s bounds exceeded")
         try:
             assert newN2[2]['warnflag'] == 0
         except AssertionError as err:
             print("beta error ", newN2[2]['task'])
             print(err)
         if abs((existing - current)/current)*100 < conv_per and abs((existing_2 - current_2)/current_2)*100 < conv_per:
-            print "Converged to within ", conv_per, "%"
+            print("Converged to within ", conv_per, "%")
             conv = True
 
     ### pi update (eqn 10)
@@ -339,13 +340,13 @@ while NAE_lim == False:
             bnds.append((.1, 1e4))
     MN = scipy.optimize.minimize(fun=final_log_lik, x0=M, method='L-BFGS-B', jac=final_jac, args=(pi, sbeta, exp_sum, pi_inv), bounds=bnds, options={'ftol': tol, 'eps': 1e-10})
     Mfinal = MN.x
-    print '---------------------------'
+    print('---------------------------')
     try:
         assert MN.success == 0
     except AssertionError as err:
         print("MN error ", MN.message)
         print(err)
-    print 'Final Log Likelihood value: ', - MN.fun
+    print('Final Log Likelihood value: ', - MN.fun)
 
     ## Returning M matrices to original form
     M_mat = np.zeros((n_tsteps, lim, lim))
@@ -365,13 +366,13 @@ while NAE_lim == False:
 
 
 # Print output
-print '---------------------------'
-print 'Run time = ', np.round(((stop - start)/60),2), 'mins'
-print 'Number of regions = ', lim
-print 'Number of timesteps = ', n_tsteps
-print 'beta = ', sbeta[-1]
-print 'ftol, Lambda = ', [tol, lmbda]
-print 's = ', sbeta[0: lim]
+print('---------------------------')
+print('Run time = ', np.round(((stop - start)/60),2), 'mins')
+print('Number of regions = ', lim)
+print('Number of timesteps = ', n_tsteps)
+print('beta = ', sbeta[-1])
+print('ftol, Lambda = ', [tol, lmbda])
+print('s = ', sbeta[0: lim])
 np.save('M_Southland', M)
 
 
