@@ -1,3 +1,4 @@
+from __future__ import print_function
 import numpy as np
 import sys
 import scipy.optimize
@@ -243,17 +244,17 @@ while NAE_lim == False:
             bnds.append((1e-9, None))
         newvals = scipy.optimize.fmin_l_bfgs_b(app_log_lik, XYZ, args=(log_mu, log_Npi, log_Npi_inv), fprime=app_jac, bounds=bnds)#, epsilon=nv_eps, factr=nv_factr, pgtol=nv_pgtol)
         XYZ, current = newvals[0], newvals[1]
-        print '---------------------------'
-        print 'Round ', rnd
+        print('---------------------------')
+        print('Round ', rnd)
         try:
             assert newvals[2]['warnflag'] == 0
         except AssertionError as err:
             print("XYZ error ", newvals[2]['task'])
             print(err)
-        print 'Current approximate log likelihood = ', - current
+        print('Current approximate log likelihood = ', - current)
         for i in XYZ:
             if i < 0:
-                print "XYZ bounds exceeded"
+                print("XYZ bounds exceeded")
 
         ### Maximising f_s_b
         bnds = []
@@ -263,18 +264,18 @@ while NAE_lim == False:
 
         newvals2 = scipy.optimize.fmin_l_bfgs_b(f_s_b, sbeta, args=(XYZ,), approx_grad=True, bounds=bnds)#, epsilon=beta_eps, factr=beta_factr, pgtol=beta_pgtol)
         sbeta, current_2 = newvals2[0], newvals2[1]
-        print 'Current f_s_b function value: ', current_2
-        print 'beta = ', sbeta[-1]
+        print('Current f_s_b function value: ', current_2)
+        print('beta = ', sbeta[-1])
         for sval in sbeta[0: lim]:
             if sval < 0:
-                print "s bounds exceeded"
+                print("s bounds exceeded")
         try:
             assert newvals2[2]['warnflag'] == 0
         except AssertionError as err:
             print("beta error ", newvals2[2]['task'])
             print(err)
         if abs((existing - current)/current)*100 < conv_per and abs((existing_2 - current_2)/current_2)*100 < conv_per:
-            print "Converged to within ", conv_per, "%"
+            print("Converged to within ", conv_per, "%")
             conv = True
 
     ### pi update (eqn 10)
@@ -301,13 +302,13 @@ while NAE_lim == False:
             bnds.append((.1, 1e4))
     Mvals = scipy.optimize.minimize(fun=final_log_lik, x0=M, method='L-BFGS-B', jac=final_jac, args=(pi, sbeta, exp_sum, pi_inv), bounds=bnds, options={'ftol': tol, 'eps': 1e-10})
     Mfinal = Mvals.x
-    print '---------------------------'
+    print('---------------------------')
     try:
         assert Mvals.success == 0
     except AssertionError as err:
         print("Mvals error ", Mvals.message)
         print(err)
-    print 'Final Log Likelihood value: ', - Mvals.fun
+    print('Final Log Likelihood value: ', - Mvals.fun)
 
     ## Returning M matrices to original form
     M_mat = np.zeros((n_tsteps, lim, lim))
@@ -328,7 +329,7 @@ while NAE_lim == False:
                 denom += M_true[i][j][k]
     NAE_Emily = num/denom
     NAE_Nathan = num_Nathan/denom
-    print 'Current NAE = ', NAE_Emily
+    print('Current NAE = ', NAE_Emily)
 
     # Calculate also the off-diagonal NAE
     num = 0
@@ -354,20 +355,20 @@ while NAE_lim == False:
         stop = timeit.default_timer()
 
 # Print output
-print '---------------------------'
-print 'Run time = ', np.round(((stop - start)/60),2), 'mins'
-print "NAE Emily = ", NAE_Emily
-print "NAE Nathan = ", NAE_Nathan
-print "off diagonal NAE Emily = ", off_NAE_Emily
-print "off diagonal NAE Nathan = ", off_NAE_Nathan
-print 'Number of regions = ', lim
-print 'Number of timesteps = ', n_tsteps
-print 'beta = ', sbeta[-1]
-print 'ftol, Lambda = ', [tol, lmbda]
-# print 's = ', sbeta[0: lim]
-# print 'M_Emily(t=0) = \n', M_mat[0]
-# print 'M_true(t=0) = \n', M_true[0]
-# print 'M_Nathan(t=0) = \n', M_est[0]
+print('---------------------------')
+print('Run time = ', np.round(((stop - start)/60),2), 'mins')
+print("NAE Emily = ", NAE_Emily)
+print("NAE Nathan = ", NAE_Nathan)
+print("off diagonal NAE Emily = ", off_NAE_Emily)
+print("off diagonal NAE Nathan = ", off_NAE_Nathan)
+print('Number of regions = ', lim)
+print('Number of timesteps = ', n_tsteps)
+print('beta = ', sbeta[-1])
+print('ftol, Lambda = ', [tol, lmbda])
+# print('s = ', sbeta[0: lim])
+# print('M_Emily(t=0) = \n', M_mat[0])
+# print('M_true(t=0) = \n', M_true[0])
+# print('M_Nathan(t=0) = \n', M_est[0])
 
 
 
