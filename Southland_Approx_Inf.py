@@ -36,6 +36,7 @@ dist = np.delete(dist, to_del[0], 0)
 dist = np.delete(dist, (to_del[1] - 1), 0)
 dist = np.delete(dist, to_del[0], 1)
 dist = np.delete(dist, (to_del[1] - 1), 1)
+# np.save('distances.npy', dist)
 
 lim = len(names)
 
@@ -69,6 +70,8 @@ for t in range(n_tsteps + 1):  # originally had  +1 here, but think by timesteps
 # Create N(t) and N(t+1) arrays
 N_t = np.array(N[0:n_tsteps])
 N_tp1 = np.array(N[1:(n_tsteps + 1)])
+# np.save('N_t.npy', N_t)
+# np.save('N_tp1.npy', N_tp1)
 
 #Compute the average change in N over time for each slice (instead of specifying factor - some kind of average )
 fac_list = []
@@ -217,7 +220,7 @@ def final_jac(M, pi, sbeta, exp_sum, pi_inv):
 # Initialise M outside loop - new M will feed in after first iteration
 M = np.zeros((n_tsteps, lim, lim))
 for t in range(n_tsteps):
-    M[t] = np.random.rand(lim, lim) * K_cut * fac_list[t]
+    M[t] = np.random.rand(lim, lim) * K_cut #* fac_list[t]
     for i in range(lim):
         M[t][i][i] = N_t[t][i]
 
@@ -355,10 +358,11 @@ while NAE_lim == False:
     M = M_mat
     rnd += 1
 
-    # End while only if suitable NAE obtained
-    if rnd > 2:
+    # End while after several runs - cannot use NAE with real data.
+    if rnd > 3:
         NAE_lim = True
         stop = timeit.default_timer()
+
 
 # Print output
 print '---------------------------'
