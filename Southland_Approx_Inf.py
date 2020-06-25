@@ -11,7 +11,7 @@ np.set_printoptions(formatter={'all': lambda x: str(int(x))})
 
 # Loading the Southland names, data, and distance matrix
 names = np.load('southland_names.npy').tolist()
-vals = np.load('southland_vals.npy').tolist()
+vals = np.load('southland_vals.npy', allow_pickle=True).tolist()
 dist = np.load('southland_distance_matrix.npy')
 
 # Specify number of time steps (# of slices - 1), and number of regions
