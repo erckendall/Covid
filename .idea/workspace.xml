@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="40d08a64-7c13-41fd-9eb8-2d9666ff00b3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/M_Southland_1_rounds.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/M_Southland_2_rounds.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/M_Southland_3_rounds.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Southland_Approx_Inf.py" beforeDir="false" afterPath="$PROJECT_DIR$/Southland_Approx_Inf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Covid-19.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Covid-19.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Approx_Inf_Re_Loop.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/M_Southland.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Movement_Optim.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Southland_Approx_Inf.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,44 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Approx_Inf_Re_Loop.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="354" selection-start-line="318" selection-end-line="354" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Southland_Approx_Inf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1676">
-              <caret line="226" column="7" lean-forward="true" selection-start-line="226" selection-start-column="7" selection-end-line="226" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testing.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -62,14 +28,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pr</find>
-      <find>prin</find>
-      <find>jit</find>
-      <find>X_tr</find>
-      <find>pi_in_log</find>
-      <find>o_dia</find>
-      <find>prange</find>
-      <find>Current =</find>
       <find>cut</find>
       <find>names</find>
       <find>Fake_64</find>
@@ -90,13 +48,23 @@
       <find>Cut</find>
       <find>stop</find>
       <find>vals</find>
-      <find>start</find>
       <find>dist</find>
+      <find>start</find>
+      <find>round</find>
+      <find>tol</find>
+      <find>print</find>
+      <find>NAE_Nathan</find>
+      <find>ind</find>
+      <find>rnd_l</find>
+      <find>sf</find>
+      <find>rnd_5</find>
     </findStrings>
     <replaceStrings>
       <replace>Fake_36</replace>
       <replace>range</replace>
       <replace>N</replace>
+      <replace>NAE_Alg_1</replace>
+      <replace>rnd</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -134,12 +102,20 @@
         <option value="$PROJECT_DIR$/Nathan-fake.py" />
         <option value="$PROJECT_DIR$/Approx_Inf_Nathan_Data.py" />
         <option value="$PROJECT_DIR$/Approx_Inf_Re_Loop.py" />
-        <option value="$PROJECT_DIR$/Southland_Approx_Inf.py" />
         <option value="$PROJECT_DIR$/testing.py" />
+        <option value="$PROJECT_DIR$/Southland_Approx_Inf.py" />
+        <option value="$PROJECT_DIR$/Approx_Inf_Re_Loop_3.py" />
+        <option value="$PROJECT_DIR$/nae-comparison/Approx_Inference_Python_2.py" />
+        <option value="$PROJECT_DIR$/Approx_Inf_Re_Loop_2.py" />
+        <option value="$PROJECT_DIR$/commuter_view.py" />
+        <option value="$PROJECT_DIR$/Southland Ms P2/commuter_view.py" />
+        <option value="$PROJECT_DIR$/Southland_Approx_Inf_2.py" />
+        <option value="$PROJECT_DIR$/Southland_Approx_Inf_3.py" />
+        <option value="$PROJECT_DIR$/Southland Ms P3/commuter_view.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
@@ -149,7 +125,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -157,14 +132,21 @@
               <item name="Covid-19" type="b2602c69:ProjectViewProjectNode" />
               <item name="Covid-19" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Covid-19" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Covid-19" type="462c0819:PsiDirectoryNode" />
+              <item name="Southland Ms P3" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -178,30 +160,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.testing">
-    <configuration name="Approx_Inf_Nathan_Data" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Covid-19" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="NUMBA_NUM_THREADS" value="12" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Approx_Inf_Nathan_Data.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Approx_Inf_Re_Loop" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.commuter_view (1)">
+    <configuration name="Approx_Inf_Re_Loop_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Covid-19" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -213,7 +173,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Approx_Inf_Re_Loop.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Approx_Inf_Re_Loop_2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -222,7 +182,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Southland_Approx_Inf" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Southland_Approx_Inf_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Covid-19" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -234,7 +194,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Southland_Approx_Inf.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Southland_Approx_Inf_2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -243,28 +203,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="parallel_version_fourth" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Covid-19" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/OLD" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OLD/parallel_version_fourth.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="testing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Southland_Approx_Inf_3" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Covid-19" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -276,7 +215,49 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testing.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Southland_Approx_Inf_3.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="commuter_view (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Covid-19" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Southland Ms P3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Southland Ms P3/commuter_view.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="commuter_view" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Covid-19" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Southland Ms P2" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Southland Ms P2/commuter_view.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -286,19 +267,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.Approx_Inf_Nathan_Data" />
-      <item itemvalue="Python.Approx_Inf_Re_Loop" />
-      <item itemvalue="Python.Southland_Approx_Inf" />
-      <item itemvalue="Python.parallel_version_fourth" />
-      <item itemvalue="Python.testing" />
+      <item itemvalue="Python.Southland_Approx_Inf_3" />
+      <item itemvalue="Python.Approx_Inf_Re_Loop_2" />
+      <item itemvalue="Python.Southland_Approx_Inf_2" />
+      <item itemvalue="Python.commuter_view" />
+      <item itemvalue="Python.commuter_view (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.testing" />
-        <item itemvalue="Python.Southland_Approx_Inf" />
-        <item itemvalue="Python.parallel_version_fourth" />
-        <item itemvalue="Python.Approx_Inf_Re_Loop" />
-        <item itemvalue="Python.Approx_Inf_Nathan_Data" />
+        <item itemvalue="Python.commuter_view (1)" />
+        <item itemvalue="Python.Southland_Approx_Inf_3" />
+        <item itemvalue="Python.Southland_Approx_Inf_2" />
+        <item itemvalue="Python.commuter_view" />
+        <item itemvalue="Python.Approx_Inf_Re_Loop_2" />
       </list>
     </recent_temporary>
   </component>
@@ -317,7 +298,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -338,20 +318,20 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24954791" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="2" weight="0.32959184" />
-      <window_info anchor="bottom" id="Python Console" order="3" weight="0.32959184" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.32959184" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="10" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32959184" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32959184" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32959184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -405,96 +385,19 @@
     <entry file="file://$PROJECT_DIR$/Movement_eighth.py" />
     <entry file="file://$PROJECT_DIR$/parallel_version.py" />
     <entry file="file://$PROJECT_DIR$/parallel_version_first.py" />
-    <entry file="file://$PROJECT_DIR$/Movement_Optim.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="135" lean-forward="true" selection-start-line="125" selection-end-line="135" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Movement_Optim.py" />
     <entry file="file://$PROJECT_DIR$/parallel_version_second.py" />
     <entry file="file://$PROJECT_DIR$/prange_test.py" />
     <entry file="file://$PROJECT_DIR$/parallel_version_third.py" />
     <entry file="file://$PROJECT_DIR$/test.py" />
-    <entry file="file://$PROJECT_DIR$/Test_Fake.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test_Fake_Jacobian.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parallel_version_fourth.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="244" column="20" lean-forward="true" selection-start-line="244" selection-start-column="20" selection-end-line="244" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fake_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-246">
-          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-          <folding>
-            <element signature="e#68#78#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Old Approx Inf/parallel_version_fourth.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="315" column="3" selection-start-line="315" selection-end-line="315" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Nathan-fake.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="27" column="16" lean-forward="true" selection-start-line="27" selection-start-column="16" selection-end-line="27" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Approx_Inf_Jacobian.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Approx_Inf_Nathan_Data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="310" lean-forward="true" selection-start-line="310" selection-end-line="310" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Test_Fake.py" />
+    <entry file="file://$PROJECT_DIR$/Test_Fake_Jacobian.py" />
+    <entry file="file://$PROJECT_DIR$/parallel_version_fourth.py" />
+    <entry file="file://$PROJECT_DIR$/fake_data.py" />
+    <entry file="file://$PROJECT_DIR$/Old Approx Inf/parallel_version_fourth.py" />
+    <entry file="file://$PROJECT_DIR$/Nathan-fake.py" />
+    <entry file="file://$PROJECT_DIR$/Approx_Inf_Jacobian.py" />
+    <entry file="file://$PROJECT_DIR$/Approx_Inf_Nathan_Data.py" />
     <entry file="file://$PROJECT_DIR$/OLD/parallel_version_fourth.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="134">
@@ -505,32 +408,80 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Approx_Inf_Re_Loop.py">
+    <entry file="file://$PROJECT_DIR$/testing.py" />
+    <entry file="file://$PROJECT_DIR$/Approx_Inf_Re_Loop.py" />
+    <entry file="file://$PROJECT_DIR$/Southland_Approx_Inf.py" />
+    <entry file="file://$PROJECT_DIR$/OLD/Movement_first_it.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="354" selection-start-line="318" selection-end-line="354" />
+        <state relative-caret-position="373">
+          <caret line="49" column="24" lean-forward="true" selection-start-line="45" selection-end-line="49" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nae-comparison/Approx_Inference_Python_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="366" selection-start-line="366" selection-end-line="366" selection-end-column="71" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testing.py">
+    <entry file="file://$PROJECT_DIR$/Approx_Inf_Re_Loop_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Southland_Approx_Inf.py">
+    <entry file="file://$PROJECT_DIR$/commuter_view.py" />
+    <entry file="file://$PROJECT_DIR$/Southland_Approx_Inf_2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1676">
-          <caret line="226" column="7" lean-forward="true" selection-start-line="226" selection-start-column="7" selection-end-line="226" selection-end-column="7" />
+        <state relative-caret-position="455">
+          <caret line="47" column="9" lean-forward="true" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
           <folding>
-            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Southland Ms P2/commuter_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Approx_Inf_Re_Loop_3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="200" column="16" lean-forward="true" selection-start-line="200" selection-end-line="200" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Southland Ms P3/commuter_view.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1185">
+          <caret line="79" column="26" selection-start-line="79" selection-start-column="26" selection-end-line="79" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Southland_Approx_Inf_3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="33" column="26" lean-forward="true" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
